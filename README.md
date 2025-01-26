@@ -25,7 +25,7 @@
  # Delete\undelete user accounts - done
 
 
-# CRUD for librarian - not yet
+# CRUD for librarian - done
 
 # Create User account, books, loans
 
@@ -38,26 +38,25 @@
 # Users CRUD - done
 
 ## create user - done
-## read user - done - find by name - not done 
+## read user - done - find by name -done
 ## update user - done
 # delete user - done
 
-# Books CRUD - not yet
+# Books CRUD - done
 
 ## create book - done
-## read books - done - find by name - not done
+## read books - done - find by name - done
 ## update book - done
 ## delete book - done
 
-# Loan CRUD - not yet
-
+# Loan CRUD - done
 ## create loan - done
 ## read loan - display all and late loans - done 
 ## update loan - done
 ## close loan (instead of delete) - done
 
 
-# CRUD for users - not yet
+# CRUD for users - done
 
 # Create - disabled
 
@@ -89,6 +88,8 @@
 # update user - done
 # logout  - done 
 
-# not yet - librarian dashboard, user dashboard 
+#  librarian dashboard, user dashboard - done
+
+The password for all test users under unit_test() is 123, instructions commented on the function
 
 
