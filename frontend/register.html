@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="register-container">
+        <h1>Register</h1>
+        <input type="text" id="registerUsername" placeholder="Username">
+        <input type="password" id="registerPassword" placeholder="Password">
+        <input type="password" id="confirmPassword" placeholder="Confirm Password">
+        <input type="text" id="name" placeholder="Full Name">
+        <input type="text" id="city" placeholder="City">
+        <input type="number" id="age" placeholder="Age" min="5">
+        <button id="registerButton" type="button" onclick="register()">Register</button>
+        <div id="registerErrorMessage" class="error-message"></div>
+        <div id="registerSuccessMessage" class="success-message" style="display: none;"></div>
+        <p>Already have an account? <a href="index.html">Login here</a></p>
+    </div>
+</body>
+<!-- <script>
+SERVER = "http://127.0.0.1:5000"
+
+function register() {
+    const username = document.getElementById('registerUsername').value;
+    const password = document.getElementById('registerPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const name = document.getElementById('name').value;
+    const city = document.getElementById('city').value;
+    const age = parseInt(document.getElementById('age').value, 10);
+    const errorMessage = document.getElementById('registerErrorMessage');
+    const successMessage = document.getElementById('registerSuccessMessage');
+
+    // Validation checks
+    if (!username || !password || !name || !city || !age) {
+        errorMessage.textContent = 'All fields are required.';
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        errorMessage.textContent = 'Passwords do not match.';
+        return;
+    }
+
+    if (age < 5) {
+        errorMessage.textContent = 'Minimum age is 5.';
+        return;
+    }
+
+    // JSON payload for registration
+    const payload = {
+        username: username,
+        password: password,
+        name: name,
+        city: city,
+        age: age,
+    };
+
+    axios.post(`${SERVER}/register`, payload, {
+        
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then(event.preventDefault();)}
+//     .then(response => {
+//         // Show success message
+//         successMessage.textContent = response.data.sucess || 'Registration successful!';
+//         successMessage.style.display = 'block';
+//         errorMessage.textContent = '';
+
+//         // Hide success message after 1.5 seconds, then redirect
+//         setTimeout(() => {
+//             window.location.href = 'index.html';
+//         }, 1500);
+//     })
+//     .catch(error => {
+//         if (error.response) {
+//             errorMessage.textContent = error.response.data.error || 'An error occurred.';
+//         } else {
+//             errorMessage.textContent = 'Unable to connect to the server.';
+//         }
+//         successMessage.style.display = 'none';
+//         console.error('Registration error:', error);
+//     });
+// }
+
+</script> -->
+</html>

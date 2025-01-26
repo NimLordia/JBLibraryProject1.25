@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Librarian Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Librarian Dashboard</h1>
+        <p>You are logged in as a Librarian.</p>
+
+        <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+
+        <h1>Librarian Dashboard</h1>
+        <p>You are logged in as a Librarian.</p>
+        <button id="logoutButton" onclick="logout()">Logout</button>
+        <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+
+
+    </header>
+
+    <!-- Manage Users Section -->
+    <section class="section-container">
+        <h2>Manage Users</h2>
+
+        <!-- Create User -->
+        <div class="form-container">
+            <h3>Create User</h3>
+            <label for="createUserUsername">Username:</label>
+            <input type="text" id="createUserUsername" />
+
+            <label for="createUserPassword">Password:</label>
+            <input type="password" id="createUserPassword" />
+
+            <label for="createUserName">Name:</label>
+            <input type="text" id="createUserName" />
+
+            <label for="createUserCity">City:</label>
+            <input type="text" id="createUserCity" />
+
+            <label for="createUserAge">Age:</label>
+            <input type="number" id="createUserAge" />
+
+            <button onclick="librarianCreateUser()">Create User</button>
+        </div>
+
+        <!-- Read Users -->
+        <div class="form-container">
+            <h3>Read Users (Customers)</h3>
+            <button onclick="librarianReadUsers()">Get All Customers</button>
+            <ul id="userList"></ul>
+        </div>
+
+        <!-- Search Customer by Name -->
+        <div class="form-container">
+            <h3>Search Customer by Name</h3>
+            <label for="searchCustomerName">Customer Name:</label>
+            <input type="text" id="searchCustomerName" />
+            <button onclick="searchCustomerByName()">Search</button>
+            <ul id="customerSearchResults"></ul>
+        </div>
+
+
+        <!-- Update User -->
+        <div class="form-container">
+            <h3>Update User</h3>
+            <label for="updateUserId">User ID:</label>
+            <input type="number" id="updateUserId" />
+
+            <label for="updateUserUsername">New Username:</label>
+            <input type="text" id="updateUserUsername" />
+
+            <label for="updateUserName">New Name:</label>
+            <input type="text" id="updateUserName" />
+
+            <label for="updateUserCity">New City:</label>
+            <input type="text" id="updateUserCity" />
+
+            <label for="updateUserAge">New Age:</label>
+            <input type="number" id="updateUserAge" />
+
+            <button onclick="librarianUpdateUser()">Update User</button>
+        </div>
+
+        <!-- Delete (Deactivate/Reactivate) User -->
+        <div class="form-container">
+            <h3>Deactivate/Reactivate User</h3>
+            <label for="deleteUserId">User ID:</label>
+            <input type="number" id="deleteUserId" />
+            <button onclick="librarianDeleteUser()">Toggle Status</button>
+        </div>
+    </section>
+
+    <!-- Manage Books Section -->
+    <section class="section-container">
+        <h2>Manage Books</h2>
+        <!-- Search Book by Name -->
+        <div class="form-container">
+            <h3>Search Book by Name</h3>
+            <label for="searchBookName">Book Name:</label>
+            <input type="text" id="searchBookName" />
+            <button onclick="searchBookByName()">Search</button>
+            <ul id="searchResults"></ul>
+        </div>
+
+        <!-- Create Book -->
+        <div class="form-container">
+            <h3>Create Book</h3>
+            <label for="createBookName">Book Name:</label>
+            <input type="text" id="createBookName" />
+
+            <label for="createBookAuthor">Author:</label>
+            <input type="text" id="createBookAuthor" />
+
+            <label for="createBookYear">Year Published:</label>
+            <input type="number" id="createBookYear" />
+
+            <label for="createBookType">Type (1/2/3):</label>
+            <input type="number" id="createBookType" />
+
+            <label for="createBookQuantity">Quantity:</label>
+            <input type="number" id="createBookQuantity" />
+
+            <button onclick="librarianCreateBook()">Create Book</button>
+        </div>
+
+        <!-- Read Books -->
+        <div class="form-container">
+            <h3>Read Books</h3>
+            <label for="bookFilter">Filter:</label>
+            <select id="bookFilter">
+                <option value="3">All</option>
+                <option value="2">Active Only</option>
+                <option value="1">Inactive Only</option>
+            </select>
+            <button onclick="librarianReadBooks()">Get Books</button>
+            <ul id="bookList"></ul>
+        </div>
+
+        <!-- Update Book -->
+        <div class="form-container">
+            <h3>Update Book</h3>
+            <label for="updateBookId">Book ID:</label>
+            <input type="number" id="updateBookId" />
+
+            <label for="updateBookName">New Name:</label>
+            <input type="text" id="updateBookName" />
+
+            <label for="updateBookAuthor">New Author:</label>
+            <input type="text" id="updateBookAuthor" />
+
+            <label for="updateBookYear">New Year:</label>
+            <input type="number" id="updateBookYear" />
+
+            <label for="updateBookType">New Type (1/2/3):</label>
+            <input type="number" id="updateBookType" />
+
+            <label for="updateBookQuantity">New Quantity:</label>
+            <input type="number" id="updateBookQuantity" />
+
+            <button onclick="librarianUpdateBook()">Update Book</button>
+        </div>
+
+        <!-- Delete (Deactivate/Reactivate) Book -->
+        <div class="form-container">
+            <h3>Deactivate/Reactivate Book</h3>
+            <label for="deleteBookId">Book ID:</label>
+            <input type="number" id="deleteBookId" />
+            <button onclick="librarianDeleteBook()">Toggle Book Status</button>
+        </div>
+    </section>
+
+    <!-- Manage Loans Section -->
+    <section class="section-container">
+        <h2>Manage Loans</h2>
+
+        <!-- Create Loan -->
+        <div class="form-container">
+            <h3>Create Loan</h3>
+            <label for="createLoanBookId">Book ID:</label>
+            <input type="number" id="createLoanBookId" />
+
+            <label for="createLoanUserId">User ID:</label>
+            <input type="number" id="createLoanUserId" />
+
+            <button onclick="librarianCreateLoan()">Create Loan</button>
+        </div>
+
+        <!-- Read Loans -->
+        <div class="form-container">
+            <h3>Read All Loans</h3>
+            <button onclick="librarianReadLoans()">Get Loans</button>
+            <ul id="loanList"></ul>
+        </div>
+        <!-- get late loans -->
+        <div class="form-container">
+            <h3>Get Late Loans</h3>
+            <button onclick="librarianGetLateLoans()">Show Late Loans</button>
+            <ul id="lateLoanList"></ul>
+        </div>
+
+        <!-- Update Loan -->
+        <div class="form-container">
+            <h3>Update Loan</h3>
+            <label for="updateLoanId">Loan ID:</label>
+            <input type="number" id="updateLoanId" />
+
+            <label for="updateLoanBookId">New Book ID:</label>
+            <input type="number" id="updateLoanBookId" />
+
+            <label for="updateLoanUserId">New User ID:</label>
+            <input type="number" id="updateLoanUserId" />
+
+            <label for="updateLoanDate">New Loan Date (YYYY-MM-DD):</label>
+            <input type="text" id="updateLoanDate" />
+
+            <label for="updateReturnDate">New Return Date (YYYY-MM-DD):</label>
+            <input type="text" id="updateReturnDate" />
+
+            <button onclick="librarianUpdateLoan()">Update Loan</button>
+        </div>
+
+        <!-- Close (Deactivate/Reactivate) Loan -->
+        <div class="form-container">
+            <h3>Close/Reactivate Loan</h3>
+            <label for="closeLoanId">Loan ID:</label>
+            <input type="number" id="closeLoanId" />
+            <button onclick="librarianCloseLoan()">Toggle Loan Status</button>
+        </div>
+    </section>
+
+    <!-- Include Axios CDN or local script -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Link to your external script -->
+    <script src="script.js"></script>
+</body>
+
+</html>

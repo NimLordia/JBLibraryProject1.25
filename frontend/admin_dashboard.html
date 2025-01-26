@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard</title>
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+
+  
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <h1>Admin Dashboard</h1>
+  <div class="dashboard-container">
+
+    <!-- CREATE LIBRARIAN SECTION -->
+    <section class="card">
+      <h2>Create Librarian</h2>
+      <label>Username: <input type="text" id="librarianUsername"></label>
+      <label>Password: <input type="password" id="librarianPassword"></label>
+      <label>Name: <input type="text" id="librarianName"></label>
+      <label>City: <input type="text" id="librarianCity"></label>
+      <label>Age: <input type="number" id="librarianAge" min="18"></label>
+      <button type="button" onclick="createLibrarian()">Create Librarian</button>
+      <div id="librarianFeedback" class="feedback"></div>
+    </section>
+
+    <!-- CREATE ADMIN SECTION -->
+    <section class="card">
+      <h2>Create Admin</h2>
+      <label>Username: <input type="text" id="adminUsername"></label>
+      <label>Password: <input type="password" id="adminPassword"></label>
+      <label>Name: <input type="text" id="adminName"></label>
+      <label>City: <input type="text" id="adminCity"></label>
+      <label>Age: <input type="number" id="adminAge" min="18"></label>
+      <button type="button" onclick="createAdmin()">Create Admin</button>
+      <div id="adminFeedback" class="feedback"></div>
+    </section>
+
+    <!-- READ USERS SECTION -->
+    <section class="card">
+      <h2>View Users</h2>
+      <label for="roleFilter">Filter by Role:</label>
+      <select id="roleFilter">
+        <option value="all">All</option>
+        <option value="admin">Admin</option>
+        <option value="librarian">Librarian</option>
+        <option value="customer">Customer</option>
+      </select>
+      <button type="button" onclick="getUsers()">Load Users</button>
+      <div id="readFeedback" class="feedback"></div>
+      <table id="usersTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Toggle Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dynamically populated rows -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- UPDATE USER SECTION -->
+    <section class="card">
+      <h2>Update User</h2>
+      <label>User ID: <input type="number" id="updateUserId"></label>
+      <p>Fill only the fields you want to change:</p>
+      <label>Username: <input type="text" id="updateUsername"></label>
+      <label>Role: 
+        <select id="updateRole">
+          <option value="">(No change)</option>
+          <option value="admin">Admin</option>
+          <option value="librarian">Librarian</option>
+          <option value="customer">Customer</option>
+        </select>
+      </label>
+      <label>Name: <input type="text" id="updateName"></label>
+      <label>City: <input type="text" id="updateCity"></label>
+      <label>Age: <input type="number" id="updateAge"></label>
+      <button type="button" onclick="updateUser()">Update User</button>
+      <div id="updateFeedback" class="feedback"></div>
+    </section>
+
+  </div>
+
+  <button class="logout-btn" onclick="logout()">Logout</button>
+
+</body>
+</html>
